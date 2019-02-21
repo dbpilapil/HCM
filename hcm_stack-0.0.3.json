@@ -158,6 +158,11 @@
       "ConstraintDescription": "Must be a valid EC2 HVM instance type.",
       "Default": "m4.xlarge"
     }
+	"EC2VolumeSize": {
+      "Type": "String",
+      "Default": "50",
+      "Description": "ADOP Core EC2 volume size in GB."
+    },	
   },
   "Resources": {
     "ElasticIP": {
@@ -175,7 +180,9 @@
             "DeviceName": "/dev/xvda",
             "Ebs": {
               "DeleteOnTermination": "true",
-              "VolumeSize": 100,
+              "VolumeSize": {
+                "Ref": "EC2VolumeSize"
+              },
               "VolumeType": "gp2"
             }
           }
