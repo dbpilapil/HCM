@@ -67,9 +67,8 @@
     }
   },
   "Outputs": {
-    "Outputs": {
-    "PublicDNSAcess": {
-      "Description": "Main access point - Please copy this URL into your web browser.",
+    "ReleaseNote": {
+      "Description": "This is your starting point, please copy this URL into your web browser.",
       "Value": {
         "Fn::Join": [
           "",
@@ -77,74 +76,32 @@
             "http://",
             {
               "Fn::GetAtt": [
-                "OuterProxyEC2",
-                "PublicIp"
-              ]
-            }
-          ]
-        ]
-      }
-    },
-    "PublicIpAccess": {
-      "Description": "Alternative access point - Please copy this URL into your web browser. The ip address changes if this server reboots.",
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "http://",
-            {
-              "Fn::GetAtt": [
-                "OuterProxyEC2",
-                "PublicIp"
-              ]
-            }
-          ]
-        ]
-      }
-    },
-    "SSH": {
-      "Description": "Use this command to ssh into your ADOP Outer Proxy instance.",
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "ssh -i ",
-            {
-              "Ref": "KeyName"
-            },
-            " ec2-user@",
-            {
-              "Fn::GetAtt": [
-                "OuterProxyEC2",
+                "AdopEC2",
                 "PublicIp"
               ]
             },
-            ""
+            "/"
           ]
         ]
       }
     },
-    "OuterProxyPrivateIP": {
-      "Description": "The Nginx Proxy EC2 instance private IP address.",
-      "Value": {
-        "Fn::GetAtt": [
-          "OuterProxyEC2",
-          "PrivateIp"
-        ]
-      }
+    "ComposeRepository": {
+        "Description": "Repository URL of the configurations of the tooling platform.",
+        "Value": {
+            "Ref": "ComposeRepository"
+        }
     },
-    "AdopEc2PrivateIP": {
-      "Description": "The ADOP EC2 instance private IP address.",
-      "Value": {
-        "Fn::GetAtt": [
-          "AdopEC2",
-          "PrivateIp"
-        ]
-      }
+    "ComposeRepoBranch": {
+        "Description": "Branch name of repository URL of the configurations of the tooling platform.",
+        "Value": {
+            "Ref": "ComposeRepoBranch"
+        }
     },
-    "AdopPlatformCredentials": {
-      "Description": "View this file inside the Adop EC2 instance backend to see the platform auto generated passwords.",
-      "Value": "/adop/adop-docker-compose/platform.secrets.sh"
+    "AdopUsername": {
+        "Description": "ADOP Admin account username.",
+        "Value": {
+            "Ref": "AdopUsername"
+        }
     }
   },
   "Parameters": {
