@@ -85,7 +85,7 @@
         ]
       }
     },
-	"SSH": {
+    "SSH": {
       "Description": "Use this command to ssh into your ADOP Outer Proxy instance.",
       "Value": {
         "Fn::Join": [
