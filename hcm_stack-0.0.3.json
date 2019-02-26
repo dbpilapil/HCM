@@ -85,37 +85,6 @@
         ]
       }
     },
-	"SSH": {
-      "Description": "Use this command to ssh into your ADOP Outer Proxy instance.",
-      "Value": {
-        "Fn::Join": [
-          "",
-          [
-            "ssh -i ",
-            {
-              "Ref": "KeyName"
-            },
-            " ec2-user@",
-            {
-              "Fn::GetAtt": [
-                "OuterProxyEC2",
-                "PublicIp"
-              ]
-            },
-            ""
-          ]
-        ]
-      }
-    },
-	"OuterProxyPrivateIP": {
-      "Description": "The Nginx Proxy EC2 instance private IP address.",
-      "Value": {
-        "Fn::GetAtt": [
-          "OuterProxyEC2",
-          "PrivateIp"
-        ]
-      }
-    },
     "ComposeRepository": {
         "Description": "Repository URL of the configurations of the tooling platform.",
         "Value": {
